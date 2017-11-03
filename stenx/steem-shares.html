@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>스테닉스 SMTs 토큰 분배 예정 현황</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>스테닉스 SMTs 토큰 분배 예정 현황</h1>
+		<ul>
+			<li>블로그: <a href="https://steemit.com/@stenx" target="_blank">https://steemit.com/@stenx</a></li>
+			<li><a href="https://steemit.com/@stenx" target="_blank">@stenx</a>의 보상 완료된 모든 게시글의 작가 보상을 보팅비율(rshares)로 환산한 STEEM 가치를 보여줍니다.</li>
+			<li>스테닉스 SMTs 런칭시, 아래 보여지는 '보팅한 STEEM 가치'와 1:1로 교환 가능합니다.</li>
+		</ul>
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>보팅한 STEEM 가치 = 스테닉스</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2"><img src="../img/icon/spinner.gif" style="margin-top:-5px;" />데이터 가져오는 중...</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+	<script>
+		function roundNumber(value, decimals) {
+			// http://www.jacklmoore.com/notes/rounding-in-javascript/
+			return Number(Math.round(value + 'e' + decimals) + 'e-' + decimals).toFixed(decimals);
+		}
+
+		steem.api.getDiscussionsByAuthorBeforeDate('stenx', null, '9999-12-31T00:00:00', 100, function(err, posts) {
+			if(err !== null) {
+				$('table tbody tr td').html('<span class="text-danger">일시적인 오류가 발생했습니다. 페이지를 새로고침 해주세요.</span>');
+				return;
+			}
+
+			var userPayouts = [];
+
+			_.each(posts, function(post) {
+				var totalPayoutValue = parseFloat(post.total_payout_value);
+
+				if(totalPayoutValue <= 0) {
+					return;
+				}
+
+				var totalRshares = _.reduce(post.active_votes, function(memo, vote) {
+					return memo + Number(vote.rshares);
+				}, 0);
+
+				_.each(post.active_votes, function(vote) {
+					var payout = totalPayoutValue * (vote.rshares / totalRshares);
+
+					var match = _.find(userPayouts, function(userPayout) { return userPayout.user === vote.voter });
+
+					if (match) {
+						match.payout += payout;
+					}
+					else {
+						userPayouts.push({
+							user: vote.voter,
+							payout: payout
+						});
+					}
+				});
+			});
+
+			var finalUserPayouts = _.sortBy(userPayouts, 'payout').reverse();
+			var tbody = "";
+
+			_.each(finalUserPayouts, function(userPayout) {
+				if(userPayout.payout < 0.0005)
+				{
+					return;
+				}
+
+				tbody += '<tr><td><a href="https://steemit.com/@' + userPayout.user + '" target="_blank">@' + userPayout.user + '</a></td><td>' + roundNumber(userPayout.payout, 3) + '</td></tr>';
+			});
+
+			$('table tbody tr').remove();
+			$('table tbody').append(tbody);
+		});
+	</script>
+</body>
+</html>
