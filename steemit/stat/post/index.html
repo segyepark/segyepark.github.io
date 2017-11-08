@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>Steemit Post Statistics</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style type="text/css">
+		canvas {
+			margin-bottom:50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container text-center">
+		<h1>Steemit Post Statistics</h1>
+		<div class="text-muted" style="margin-bottom:20px;">Post data for the last 3 months</div>
+
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#all">ALL</a></li>
+			<li><a data-toggle="tab" href="#kr">#KR</a></li>
+		</ul>
+
+		<div class="tab-content" style="padding-top:30px;">
+			<div id="loading">
+				<img src="../../../img/icon/spinner-red.svg" />
+			</div>
+
+			<div id="all" class="tab-pane fade in active">
+				<div class="row">
+					<div class="col-md-6"><canvas id="posts-and-unique-authors-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="avg-posts-per-author-chart"></canvas></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"><canvas id="total-payout-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="max-payout-chart"></canvas></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"><canvas id="avg-payout-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="steem-price-chart"></canvas></div>
+				</div>
+			</div>
+			<div id="kr" class="tab-pane fade">
+				<div class="row">
+					<div class="col-md-6"><canvas id="kr-posts-and-unique-authors-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="kr-avg-posts-per-author-chart"></canvas></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"><canvas id="kr-total-payout-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="kr-max-payout-chart"></canvas></div>
+				</div>
+				<div class="row">
+					<div class="col-md-6"><canvas id="kr-avg-payout-chart"></canvas></div>
+					<div class="col-md-6"><canvas id="kr-steem-price-chart"></canvas></div>
+				</div>				
+			</div>
+		</div>
+
+		<footer class="footer">
+			<p>&copy; 2017 <a href="https://steemit.com/@segyepark" target="_blank">steemit.com/@segyepark</a></p>
+		</footer>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.bundle.min.js"></script>
+	<script src="../../../js/chart.utils.js"></script>
+	<script>
+	    function showInfo(dataForSingleSheet, tabletop) {
+	    	$('#loading').hide();
+
+			var data = tabletop.sheets('All').all();
+            var dates = _.pluck(data, 'Date');
+
+            setChart('posts-and-unique-authors-chart', data, dates, ['Posts', 'Unique Authors'], ['Posts', 'UniqueAuthors']);
+            setChart('avg-posts-per-author-chart', data, dates, ['Avg. Posts Per Author'], ['AvgPostsPerAuthor']);
+            setChart('total-payout-chart', data, dates, ['Total Payout ($)'], ['TotalPayout']);
+            setChart('max-payout-chart', data, dates, ['Max. Payout ($)'], ['MaxPayout']);
+            setChart('avg-payout-chart', data, dates, ['Avg. Payout ($)'], ['AvgPayout']);
+            setChart('steem-price-chart', data, dates, ['STEEM Price ($)'], ['SteemPrice']);
+
+			data = tabletop.sheets('KR').all();
+            dates = _.pluck(data, 'Date');
+
+            setChart('kr-posts-and-unique-authors-chart', data, dates, ['게시물수', '유니크 작가수'], ['Posts', 'UniqueAuthors']);
+            setChart('kr-avg-posts-per-author-chart', data, dates, ['작가별 평균 게시물수'], ['AvgPostsPerAuthor']);
+            setChart('kr-total-payout-chart', data, dates, ['게시물 전체 보상액 ($)'], ['TotalPayout']);
+            setChart('kr-max-payout-chart', data, dates, ['게시물 최대 보상액 ($)'], ['MaxPayout']);
+            setChart('kr-avg-payout-chart', data, dates, ['게시물별 평균 보상액 ($)'], ['AvgPayout']);
+            setChart('kr-steem-price-chart', data, dates, ['STEEM 가격 ($)'], ['SteemPrice']);
+	    }
+
+	    function setChart(id, data, dates, labels, values) {
+	        var color = Chart.helpers.color;
+	        var datasets = [];
+
+	        var colors = [window.chartColors.blue, window.chartColors.red];
+
+	        for (var i = 0; i < labels.length; i++) {
+	        	var label = labels[i];
+	        	var value = values[i];
+
+				datasets.push({
+	                label: label,
+	                backgroundColor: color(colors[i]).alpha(0.5).rgbString(),
+	                borderColor: colors[i],
+	                data: _.pluck(data, value).map(Number),
+	                fill: false,
+				});
+	        }
+
+			new Chart(document.getElementById(id).getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: dates,
+	                datasets: datasets
+            	},
+	            options: {
+	                responsive: true,
+	                tooltips: {
+	                    mode: 'index',
+	                    intersect: false,
+	                },
+	                hover: {
+	                    mode: 'nearest',
+	                    intersect: true
+	                },
+	                scales: {
+	                    xAxes: [{
+	                        type: 'time',
+	                        distribution: 'series',
+	                    }]
+	                },
+	            }
+	    	});
+	    }
+
+	    $(function() {
+	    	var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1HlTNWYCVySeEqqMXBIrOo7DWDNjKiY5FnZLuzQ5lsDw/';
+
+			Tabletop.init({
+				key: publicSpreadsheetUrl,
+				callback: showInfo,
+				simpleSheet: true
+			});
+	    });
+	</script>
+</body>
+</html>
