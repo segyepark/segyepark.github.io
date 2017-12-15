@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-91871241-3"></script>
+	<script>
+		if(location.host.indexOf('localhost') === -1) {
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-91871241-3');
+		}
+	</script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>SteemConnectV2 Test</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container text-center">
+		<h1>SteemConnectV2 Test</h1>
+
+		<div id="loading">
+			<img src="../../img/icon/spinner-red.svg" />
+		</div>
+
+		<div id="logged-out" class="collapse">
+			<button type="button" id="login-btn" class="btn btn-primary"><span class="glyphicon glyphicon-user"></span> Login via SteemConnect</button>
+		</div>
+
+		<div id="logged-in" class="collapse">
+			<div style="margin-bottom:20px">
+				Logged in as <a id="user" target="_blank"></a>
+			</div>
+
+			<button type="button" id="send-btn" class="btn btn-success"><span class="glyphicon glyphicon-usd"></span> Send 0.001 SBD to @segyepark</button>
+
+			<button type="button" id="logout-btn" class="btn btn-default"></span> Logout</button>
+		</div>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.8/uuid.min.js"></script>
+	<script src="https://cdn.steemjs.com/lib/latest/steem.min.js"></script>
+	<script src="https://cdn.rawgit.com/steemit/sc2-angular/08c59469/sc2.min.js"></script>
+	<script>
+		// https://github.com/steemit/sc2-sdk
+
+		function getParameterByName(name, url) {
+		    if (!url) url = window.location.href;
+		    name = name.replace(/[\[\]]/g, "\\$&");
+		    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+		        results = regex.exec(url);
+		    if (!results) return '';
+		    if (!results[2]) return '';
+		    return decodeURIComponent(results[2].replace(/\+/g, " "));
+		}
+
+		var currentUrl = location.origin + location.pathname.replace('index.html', '');
+		var accessToken = getParameterByName('access_token');
+
+		sc2.init({
+			app: 'steem.world.app',
+			callbackURL: currentUrl,
+			accessToken: accessToken,
+			scope: ['vote', 'comment'],
+		});
+
+		if(accessToken) {
+			sc2.me(function (err, res) {
+				if(res === null) {
+					return;
+				}
+
+				var user = res.user;
+
+				$('#user').text('@' + user).prop('href', 'https://steemit.com/@' + user);
+
+				$('#send-btn').click(function() {
+					location.href = sc2.sign('transfer', {
+						from: res.user,
+						to: 'segyepark',
+						amount: '0.001 SBD',
+						memo: uuid.v4(),
+					}, location.href);
+				});
+
+				$('#logout-btn').click(function() {
+					$('#logged-in').hide();
+					$('#loading').show();
+
+					sc2.revokeToken(function (err, res) {
+						if(err === null) {
+							location.href = currentUrl;
+						}
+					});
+				});
+
+				$('#loading').hide();
+				$('#logged-in').show();
+			});
+		}
+		else {
+			$('#login-btn').click(function() {
+				location.href = sc2.getLoginURL();
+			});
+
+			$('#loading').hide();
+			$('#logged-out').show();
+		}
+	</script>
+</body>
+</html>
