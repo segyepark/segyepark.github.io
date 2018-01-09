@@ -2,6 +2,7 @@
 
 function showInfo(dataForSingleSheet, tabletop) {
 	$('#loading').hide();
+    $('.disabled').removeClass();
 
 	var data = tabletop.sheets('All').all();
     var dates = _.pluck(data, 'Date');
