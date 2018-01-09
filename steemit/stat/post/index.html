@@ -20,49 +20,244 @@
 <body>
 	<div class="container text-center">
 		<h1>Steemit Post Statistics</h1>
-		<div class="text-muted" style="margin-bottom:20px;">for the last 3 months</div>
 
 		<ul class="nav nav-tabs">
-			<li class="active"><a data-toggle="tab" href="#all">ALL</a></li>
-			<li><a data-toggle="tab" href="#kr">#KR</a></li>
+			<li class="active "><a data-toggle="tab" href="#all" style="font-weight:bold">ALL Tags</a></li>
+			<li><a data-toggle="tab" href="#kr" style="font-weight:bold">#KR</a></li>
 		</ul>
 
 		<div class="tab-content" style="padding-top:30px;">
-			<div id="loading">
-				<img src="../../../img/icon/spinner-red.svg" />
-			</div>
-
 			<div id="all" class="tab-pane fade in active">
-				<div class="row">
-					<div class="col-md-6"><canvas id="posts-and-unique-authors-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="avg-posts-per-author-chart"></canvas></div>
-				</div>
-				<div class="row">
-					<div class="col-md-6"><canvas id="total-payout-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="max-payout-chart"></canvas></div>
-				</div>
-				<div class="row">
-					<div class="col-md-6"><canvas id="avg-payout-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="steem-price-chart"></canvas></div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#all-all">ALL</a></li>
+					<li><a data-toggle="tab" href="#all-1year">1 Year</a></li>
+					<li><a data-toggle="tab" href="#all-6month">6 Months</a></li>
+					<li><a data-toggle="tab" href="#all-3month">3 Months</a></li>
+					<li><a data-toggle="tab" href="#all-1month">1 Month</a></li>
+					<li><a data-toggle="tab" href="#all-2week">2 Weeks</a></li>
+					<li><a data-toggle="tab" href="#all-1week">Last Week</a></li>
+				</ul>
+
+				<div class="tab-content" style="padding-top:30px;">
+					<div id="loading">
+						<img src="../../../img/icon/spinner-red.svg" />
+					</div>
+
+					<div id="all-all" class="tab-pane fade in active">
+						<div class="row">
+							<div class="col-md-6"><canvas id="all-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="all-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="all-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="all-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="all-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="all-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-1year" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="1year-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1year-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1year-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1year-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1year-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1year-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-6month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="6month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="6month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="6month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="6month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="6month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="6month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-3month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="3month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="3month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="3month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="3month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="3month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="3month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-1month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="1month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-2week" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="2week-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="2week-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="2week-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="2week-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="2week-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="2week-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="all-1week" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="1week-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1week-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1week-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1week-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="1week-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="1week-steem-price-chart"></canvas></div>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div id="kr" class="tab-pane fade">
-				<div class="row">
-					<div class="col-md-6"><canvas id="kr-posts-and-unique-authors-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="kr-avg-posts-per-author-chart"></canvas></div>
-				</div>
-				<div class="row">
-					<div class="col-md-6"><canvas id="kr-total-payout-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="kr-max-payout-chart"></canvas></div>
-				</div>
-				<div class="row">
-					<div class="col-md-6"><canvas id="kr-avg-payout-chart"></canvas></div>
-					<div class="col-md-6"><canvas id="kr-steem-price-chart"></canvas></div>
+				<ul class="nav nav-tabs">
+					<li class="active"><a data-toggle="tab" href="#kr-all">ALL</a></li>
+					<li><a data-toggle="tab" href="#kr-1year">1 Year</a></li>
+					<li><a data-toggle="tab" href="#kr-6month">6 Months</a></li>
+					<li><a data-toggle="tab" href="#kr-3month">3 Months</a></li>
+					<li><a data-toggle="tab" href="#kr-1month">1 Month</a></li>
+					<li><a data-toggle="tab" href="#kr-2week">2 Weeks</a></li>
+					<li><a data-toggle="tab" href="#kr-1week">Last Week</a></li>
+				</ul>
+
+				<div class="tab-content" style="padding-top:30px;">
+					<div id="kr-all" class="tab-pane fade in active">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-all-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-all-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-all-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-all-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-all-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-all-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-1year" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1year-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1year-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1year-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1year-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1year-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1year-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-6month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-6month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-6month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-6month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-6month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-6month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-6month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-3month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-3month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-3month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-3month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-3month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-3month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-3month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-1month" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1month-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1month-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1month-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1month-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1month-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1month-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-2week" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-2week-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-2week-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-2week-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-2week-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-2week-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-2week-steem-price-chart"></canvas></div>
+						</div>
+					</div>
+					<div id="kr-1week" class="tab-pane fade">
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1week-posts-and-unique-authors-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1week-avg-posts-per-author-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1week-total-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1week-max-payout-chart"></canvas></div>
+						</div>
+						<div class="row">
+							<div class="col-md-6"><canvas id="kr-1week-avg-payout-chart"></canvas></div>
+							<div class="col-md-6"><canvas id="kr-1week-steem-price-chart"></canvas></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<footer class="footer">
+		<footer class="footer" style="margin-bottom:20px;">
 			<p>&copy; 2017 <a href="https://steemit.com/@segyepark" target="_blank">steemit.com/@segyepark</a></p>
 		</footer>
 	</div>
