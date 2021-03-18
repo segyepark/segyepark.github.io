@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <!-- Custom Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="loader">
+            <svg class="circular" viewBox="25 25 50 50">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="3" stroke-miterlimit="10" />
+            </svg>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+
+    
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="form-validation">
+                                    <form class="form-valide" action="https://aha.indicoebm.com/api/RiskCalculatorManager/GetBaselineRiskResult" method="post">
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label">Gender</label>
+                                            <div class="col-lg-6">
+                                                <label class="radio-inline mr-3"><input type="radio" name="Gender" value="M"> Male</label>
+                                                <label class="radio-inline mr-3"><input type="radio" name="Gender" value="F"> Female</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="age">Age</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="age" name="age" placeholder="40-79">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="Race">Race</label>
+                                            <div class="col-lg-6">
+                                                <select class="form-control" id="Race" name="Race">
+                                                    <option value="">Please select</option>
+                                                    <option value="AA">African American</option>
+                                                    <option value="WH">Non-Hispanic White</option>
+                                                    <option value="WH">Asian / Pacific Islander - South Asian</option>
+                                                    <option value="WH">Asian / Pacific Islander - East Asian</option>
+                                                    <option value="WH">Asian / Pacific Islander - Other</option>
+                                                    <option value="WH">American Indian / Alaskan Native</option>
+                                                    <option value="WH">Hispanic / Latino</option>
+                                                    <option value="WH">Other / Mixied</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="TotalCholestrol">Total Cholesterol</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="TotalCholestrol" name="TotalCholestrol" placeholder="130-320">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="LDLCholestrol">LDL Cholesterol</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="LDLCholestrol" name="LDLCholestrol" placeholder="30-300">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="HDLCholestrol">HDL Cholesterol</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="HDLCholestrol" name="HDLCholestrol" placeholder="20-100">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="TreatmentwithStatin">Treatment with Statin</label>
+                                            <div class="col-lg-8">
+                                                <input type="checkbox" class="css-control-input" id="TreatmentwithStatin" name="TreatmentwithStatin" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="SystolicBloodPressure">Systolic Blood Pressure</label>
+                                            <div class="col-lg-6">
+                                                <input type="text" class="form-control" id="SystolicBloodPressure" name="SystolicBloodPressure" placeholder="90-200">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="TreatmentforHypertension">Treatment For Hypertension</label>
+                                            <div class="col-lg-8">
+                                                <input type="checkbox" class="css-control-input" id="TreatmentforHypertension" name="TreatmentforHypertension" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="HistoryofDiabetes">History Of Diabetes</label>
+                                            <div class="col-lg-8">
+                                                <input type="checkbox" class="css-control-input" id="HistoryofDiabetes" name="HistoryofDiabetes" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="CurrentSmoker">Current Smoker</label>
+                                            <div class="col-lg-8">
+                                                <input type="checkbox" class="css-control-input" id="CurrentSmoker" name="CurrentSmoker" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-lg-4 col-form-label" for="AspirinTherapy">Aspirin Therapy</label>
+                                            <div class="col-lg-8">
+                                                <input type="checkbox" class="css-control-input" id="AspirinTherapy" name="AspirinTherapy" value="true">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <button type="submit" class="btn btn-primary">Calculate Baseline Risk</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- #/ container -->
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+        
+        
+        <!--**********************************
+            Footer start
+        ***********************************-->
+        <div class="footer">
+            <div class="copyright">
+                <p>Copyright &copy; Designed & Developed by Enovant 2021</p>
+            </div>
+        </div>
+        <!--**********************************
+            Footer end
+        ***********************************-->
+    </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
+
+    <!--**********************************
+        Scripts
+    ***********************************-->
+    <script src="plugins/common/common.min.js"></script>
+    <script src="js/custom.min.js"></script>
+    <script src="js/settings.js"></script>
+    <script src="js/gleek.js"></script>
+    <script src="js/styleSwitcher.js"></script>
+
+    <script src="./plugins/validation/jquery.validate.min.js"></script>
+    <script src="./plugins/validation/jquery.validate-init.js"></script>
+
+</body>
+
+</html>
