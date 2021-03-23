@@ -2,19 +2,30 @@
 <html lang="en">
 
 <head>
+    <!-- https://technext.github.io/quixlab/index.html -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quixlab - Bootstrap Admin Dashboard Template by Themefisher.com</title>
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <title>Enovant CV Risk Calculator</title>
     <!-- Custom Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+    <style type="text/css">
+        .content-body {
+            margin-left: 0 !important;
+        }
 
+        .form-loader {
+            margin-left: 70px;
+            height: 36.8px;
+        }
+
+        .footer {
+            padding-left: 0;
+        }
+    </style>
 </head>
 
 <body>
-
     <!--*******************
         Preloader start
     ********************-->
@@ -29,27 +40,24 @@
         Preloader end
     ********************-->
 
-    
     <!--**********************************
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
-
         <!--**********************************
             Content body start
         ***********************************-->
         <div class="content-body">
-
             <div class="container-fluid">
                 <div class="row justify-content-center">
                     <div class="col-lg-12">
+                        <h2>Enovant CV Risk Calculator</h2>
                         <div class="card">
                             <div class="card-body">
-                                <h1 class="card-title">Enovant CV Risk Calculator</h1>
                                 <div class="default-tab">
                                     <ul class="nav nav-tabs mb-3" role="tablist">
-                                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#baseline">Baseline Risk</a></li>
-                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#updated">Updated Risk</a></li>
+                                        <li class="nav-item"><a class="nav-link active show" data-toggle="tab" href="#baseline" id="baseline-tab">Baseline Risk</a></li>
+                                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#updated" id="updated-tab">Updated Risk</a></li>
                                     </ul>
                                     <div class="form-validation">
                                         <div class="tab-content">
@@ -58,22 +66,22 @@
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label">Gender</label>
                                                         <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="M" checked> Male</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="F"> Female</label>
+                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="M" required> Male</label>
+                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="F" required> Female</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="age">Age</label>
                                                         <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="age" name="age" placeholder="40-79" value="45">
+                                                            <input type="text" class="form-control" id="age" name="age" min="40" max="79" placeholder="40-79" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="Race">Race</label>
                                                         <div class="col-lg-8">
-                                                            <select class="form-control" id="Race" name="Race">
+                                                            <select class="form-control" id="Race" name="Race" required>
                                                                 <option value="">Please select</option>
-                                                                <option value="AA" selected>African American</option>
+                                                                <option value="AA">African American</option>
                                                                 <option value="WH">Non-Hispanic White</option>
                                                                 <option value="WH">Asian / Pacific Islander - South Asian</option>
                                                                 <option value="WH">Asian / Pacific Islander - East Asian</option>
@@ -87,23 +95,23 @@
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="TotalCholestrol">Total Cholesterol</label>
                                                         <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="TotalCholestrol" name="TotalCholestrol" placeholder="130-320" value="150">
+                                                            <input type="text" class="form-control" id="TotalCholestrol" name="TotalCholestrol" min="130" max="320" placeholder="130-320" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="LDLCholestrol">LDL Cholesterol</label>
                                                         <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="LDLCholestrol" name="LDLCholestrol" placeholder="30-300" value="100">
+                                                            <input type="text" class="form-control" id="LDLCholestrol" name="LDLCholestrol" min="30" max="300" placeholder="30-300" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="HDLCholestrol">HDL Cholesterol</label>
                                                         <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="HDLCholestrol" name="HDLCholestrol" placeholder="20-100" value="30">
+                                                            <input type="text" class="form-control" id="HDLCholestrol" name="HDLCholestrol" min="20" max="100" placeholder="20-100" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="TreatmentwithStatin">Treatment with Statin</label>
+                                                        <label class="col-lg-4 col-form-label">Treatment with Statin</label>
                                                         <div class="col-lg-8">
                                                             <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="true"> Yes</label>
                                                             <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="false" checked> No</label>
@@ -112,32 +120,32 @@
                                                     <div class="form-group row">
                                                         <label class="col-lg-4 col-form-label" for="SystolicBloodPressure">Systolic Blood Pressure</label>
                                                         <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="SystolicBloodPressure" name="SystolicBloodPressure" placeholder="90-200" value="150">
+                                                            <input type="text" class="form-control" id="SystolicBloodPressure" name="SystolicBloodPressure" min="90" max="200" placeholder="90-200" required>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="TreatmentforHypertension">Treatment For Hypertension</label>
+                                                        <label class="col-lg-4 col-form-label">Treatment For Hypertension</label>
                                                         <div class="col-lg-8">
                                                             <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="true"> Yes</label>
                                                             <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="false" checked> No</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="HistoryofDiabetes">History Of Diabetes</label>
+                                                        <label class="col-lg-4 col-form-label">History Of Diabetes</label>
                                                         <div class="col-lg-8">
                                                             <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="true"> Yes</label>
                                                             <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="false" checked> No</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="CurrentSmoker">Current Smoker</label>
+                                                        <label class="col-lg-4 col-form-label">Current Smoker</label>
                                                         <div class="col-lg-8">
                                                             <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="true"> Yes</label>
                                                             <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="false" checked> No</label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="AspirinTherapy">Aspirin Therapy</label>
+                                                        <label class="col-lg-4 col-form-label">Aspirin Therapy</label>
                                                         <div class="col-lg-8">
                                                             <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="true"> Yes</label>
                                                             <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="false" checked> No</label>
@@ -146,116 +154,117 @@
                                                     <div class="form-group row">
                                                         <div class="col-lg-8 ml-auto">
                                                             <button type="submit" class="btn btn-primary">Calculate Baseline Risk</button>
+                                                            <img id="baseline-loader" class="form-loader collapse" src="images/loader.svg" />
                                                         </div>
                                                     </div>
                                                 </form>
-                                                <div id="baseline-message" class="alert alert-danger collapse"></div>
+                                                <div id="baseline-message" class="alert alert-info collapse"></div>
+                                                <div id="baseline-error-message" class="alert alert-danger collapse"></div>
                                             </div>
                                             <div class="tab-pane fade" id="updated">
-                                                <form class="form-valide" id="updated-form">
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label">Gender</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="M" checked> Male</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="Gender" value="F"> Female</label>
+                                                <div id="baseline-incomplete-message" class="alert alert-danger">
+                                                    Please complete the baseline risk first. <a id="baseline-link" href="javascript:void(0)"><b>Click here.</b></a>
+                                                </div>
+                                                <div id="updated-form-area" class="collapse">
+                                                    <form class="form-valide" id="updated-form">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Gender</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="hidden" name="Gender" />
+                                                                <label class="radio-inline mr-3"><input type="radio" name="GenderRadio" value="M" disabled> Male</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="GenderRadio" value="F" disabled> Female</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="age">Age</label>
-                                                        <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="age" name="age" placeholder="40-79" value="46">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label" for="age2">Age (must be greater than <span id="baseline-age"></span>)</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="text" class="form-control" id="age2" name="age" max="79" placeholder="40-79" required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="Race">Race</label>
-                                                        <div class="col-lg-8">
-                                                            <select class="form-control" id="Race" name="Race">
-                                                                <option value="">Please select</option>
-                                                                <option value="AA" selected>African American</option>
-                                                                <option value="WH">Non-Hispanic White</option>
-                                                                <option value="WH">Asian / Pacific Islander - South Asian</option>
-                                                                <option value="WH">Asian / Pacific Islander - East Asian</option>
-                                                                <option value="WH">Asian / Pacific Islander - Other</option>
-                                                                <option value="WH">American Indian / Alaskan Native</option>
-                                                                <option value="WH">Hispanic / Latino</option>
-                                                                <option value="WH">Other / Mixied</option>
-                                                            </select>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Race</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="hidden" name="Race" />
+                                                                <span id="race-text"></span>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="TotalCholestrol">Total Cholesterol</label>
-                                                        <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="TotalCholestrol" name="TotalCholestrol" placeholder="130-320" value="150">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label" for="TotalCholestrol2">Total Cholesterol</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="text" class="form-control" id="TotalCholestrol2" name="TotalCholestrol" min="130" max="320" placeholder="130-320" required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="LDLCholestrol">LDL Cholesterol</label>
-                                                        <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="LDLCholestrol" name="LDLCholestrol" placeholder="30-300" value="100">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label" for="LDLCholestrol2">LDL Cholesterol</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="text" class="form-control" id="LDLCholestrol2" name="LDLCholestrol" min="30" max="300" placeholder="30-300" required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="HDLCholestrol">HDL Cholesterol</label>
-                                                        <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="HDLCholestrol" name="HDLCholestrol" placeholder="20-100" value="30">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label" for="HDLCholestrol2">HDL Cholesterol</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="text" class="form-control" id="HDLCholestrol2" name="HDLCholestrol" min="20" max="100" placeholder="20-100" required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="TreatmentwithStatin">Treatment with Statin</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="true"> Yes</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="false" checked> No</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Treatment with Statin</label>
+                                                            <div class="col-lg-8">
+                                                                <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="true"> Yes</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="TreatmentwithStatin" value="false" checked> No</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="SystolicBloodPressure">Systolic Blood Pressure</label>
-                                                        <div class="col-lg-8">
-                                                            <input type="text" class="form-control" id="SystolicBloodPressure" name="SystolicBloodPressure" placeholder="90-200" value="150">
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label" for="SystolicBloodPressure2">Systolic Blood Pressure</label>
+                                                            <div class="col-lg-8">
+                                                                <input type="text" class="form-control" id="SystolicBloodPressure2" name="SystolicBloodPressure" min="90" max="200" placeholder="90-200" required>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="TreatmentforHypertension">Treatment For Hypertension</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="true"> Yes</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="false" checked> No</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Treatment For Hypertension</label>
+                                                            <div class="col-lg-8">
+                                                                <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="true"> Yes</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="TreatmentforHypertension" value="false" checked> No</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="HistoryofDiabetes">History Of Diabetes</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="true"> Yes</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="false" checked> No</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">History Of Diabetes</label>
+                                                            <div class="col-lg-8">
+                                                                <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="true"> Yes</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="HistoryofDiabetes" value="false" checked> No</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="CurrentSmoker">Current Smoker</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="true"> Yes</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="false" checked> No</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Current Smoker</label>
+                                                            <div class="col-lg-8">
+                                                                <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="true"> Yes</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="CurrentSmoker" value="false" checked> No</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <label class="col-lg-4 col-form-label" for="AspirinTherapy">Aspirin Therapy</label>
-                                                        <div class="col-lg-8">
-                                                            <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="true"> Yes</label>
-                                                            <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="false" checked> No</label>
+                                                        <div class="form-group row">
+                                                            <label class="col-lg-4 col-form-label">Aspirin Therapy</label>
+                                                            <div class="col-lg-8">
+                                                                <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="true"> Yes</label>
+                                                                <label class="radio-inline mr-3"><input type="radio" name="AspirinTherapy" value="false" checked> No</label>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="form-group row">
-                                                        <div class="col-lg-8 ml-auto">
-                                                            <button type="submit" class="btn btn-primary">Calculate Updated Risk</button>
+                                                        <div class="form-group row">
+                                                            <div class="col-lg-8 ml-auto">
+                                                                <button type="submit" class="btn btn-primary">Calculate Updated Risk</button>
+                                                                <img id="updated-loader" class="form-loader collapse" src="images/loader.svg" />
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </form>
-                                                <div id="updated-message1" class="alert alert-danger collapse">
+                                                    </form>
+                                                </div>
+                                                <div id="updated-message1" class="alert alert-info collapse">
                                                     <div class="message"></div>
                                                     <p>Baseline 10 years ASCVD Risk</p>
                                                 </div>
-                                                <div id="updated-message2" class="alert alert-danger collapse">
+                                                <div id="updated-message2" class="alert alert-info collapse">
                                                     <div class="message"></div>
                                                     <p>Risk at Follow-Up if Nothing Had Been Done</p>
                                                 </div>
-                                                <div id="updated-message3" class="alert alert-danger collapse"></div>
+                                                <div id="updated-message3" class="alert alert-info collapse"></div>
+                                                <div id="updated-error-message" class="alert alert-danger collapse"></div>
                                             </div>
                                         </div>           
                                     </div>
@@ -270,7 +279,6 @@
         <!--**********************************
             Content body end
         ***********************************-->
-        
         
         <!--**********************************
             Footer start
@@ -319,8 +327,15 @@
         let baselineParameters;
 
         $('#baseline-form').submit(function(e) {
-            e.preventDefault();
+            if(!$(this).valid()) {
+                return false;
+            }
             
+            e.preventDefault();
+
+            $('#baseline-loader').prev().hide();
+            $('#baseline-loader').show();
+
             const url = 'https://aha.indicoebm.com/api/RiskCalculatorManager/GetBaselineRiskResult';
             const payload = $(this).serialize();
 
@@ -331,23 +346,47 @@
                     messages.push(getRiskNumbers(data.baselineRisk));
                     messages.push(data.riskScoreComment);
                     
+                    $('#baseline-error-message').hide();
                     $('#baseline-message').html(messages.join('')).show();
-                    baselineParameters = payload;
+                    $('#baseline-incomplete-message').hide();
+                    $('#updated-form-area').show();
+
+                    baselineParameters = $('#baseline-form').serializeObject();
+                    $(`#updated-form input[name=GenderRadio][value=${baselineParameters.Gender}]`).prop("checked",true);
+                    $('#updated-form input[name=Gender]').val(baselineParameters.Gender);
+
+                    const selectedRaceText = $("#baseline-form select[name=Race] option:selected").text();
+                    $('#updated-form #race-text').text(selectedRaceText);
+                    $('#updated-form input[name=Race]').val(baselineParameters.Race);
+
+                    $('#baseline-age').text(baselineParameters.age);
+                    $('#updated-form input[name=age]').prop('min', Number(baselineParameters.age) + 1).prop('placeholder', `${Number(baselineParameters.age) + 1}-79`);
                 }
                 else {
                     const message = data.message;
 
-                    $('#baseline-message').text(message).show();
+                    $('#baseline-message').hide();
+                    $('#baseline-error-message').text(message).show();
                 }
+
+                $('#baseline-loader').prev().show();
+                $('#baseline-loader').hide();
             });
         });
 
         $('#updated-form').submit(function(e) {
+            if(!$(this).valid()) {
+                return false;
+            }
+
             e.preventDefault();
+
+            $('#updated-loader').prev().hide();
+            $('#updated-loader').show();
 
             const url = 'https://aha.indicoebm.com/api/RiskCalculatorManager/GetFollowUpRiskResult';
             const payload = {
-                'BaselineParameters': $('#baseline-form').serializeObject(),
+                'BaselineParameters': baselineParameters,
                 'FollowupParameters': $(this).serializeObject()
             };
 
@@ -361,6 +400,7 @@
                     messages.push(data.riskScoreComment);
                     $('#updated-message3').html(messages.join(''));
 
+                    $('#updated-error-message').hide();
                     $('#updated-message1').show();
                     $('#updated-message2').show();
                     $('#updated-message3').show();
@@ -368,8 +408,14 @@
                 else {
                     const message = data.message;
 
-                    $('#updated-message1').text(message).show();
+                    $('#updated-message1').hide();
+                    $('#updated-message2').hide();
+                    $('#updated-message3').hide();
+                    $('#updated-error-message').text(message).show();
                 }
+
+                $('#updated-loader').prev().show();
+                $('#updated-loader').hide();
             });
         });
 
@@ -392,12 +438,30 @@
 
             const messages = [];
 
-            messages.push(`<h3>* ACC AHA guideline: ${risk.toFixed(2)}%</h3>`);
-            messages.push(`<h3>* Enovant PLP model: ${enovantPlpRisk.toFixed(2)}%</h3>`);
-            messages.push(`<h3>* Enovant PLE model: ${enovantPleRisk.toFixed(2)}%</h3>`);
+            messages.push(`<h4>ACC AHA guideline: ${risk.toFixed(2)}%</h4>`);
+            messages.push(`<h4>Enovant PLP model: ${enovantPlpRisk.toFixed(2)}%</h4>`);
+            messages.push(`<h4>Enovant PLE model: ${enovantPleRisk.toFixed(2)}%</h4>`);
+            messages.push('<hr/>');
 
             return messages.join('');
         }
+
+        $('#baseline-link').click(function() {
+            initFormValidation('baseline-form');
+            $('#baseline-tab').tab('show');
+        });
+        
+        $('#baseline-tab').click(function() {
+            initFormValidation('baseline-form');
+        });
+        
+        $('#updated-tab').click(function() {
+            initFormValidation('updated-form');
+        });
+
+        $(function() {
+            initFormValidation('baseline-form');
+        });
     </script>
 </body>
 
